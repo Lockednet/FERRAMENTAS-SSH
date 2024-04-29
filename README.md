@@ -17,5 +17,5 @@ apt install dos2unix -y; wget https://github.com/Lockednet/FERRAMENTAS-SSH/raw/m
 
 ## AUTERAR SENHA ROOT
 ```sh
-bash <(wget -qO- https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/senharoot)
+bash <(wget -qO- https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/senharoot.sh)
 ```
