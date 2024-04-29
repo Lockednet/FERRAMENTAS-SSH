@@ -2,7 +2,7 @@
 
 ## ATUALIZAR E LIMPAR SISTEMA
 ```sh
-apt update -y && apt upgrade -y && sudo apt autoremove && sudo apt autoclean
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove && sudo apt autoclean
 ```
 
 ## INSTALAR FIREWALL E ABRIR PORTAS AUTOMÁTICO
