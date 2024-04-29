@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 
 # Configurações do bot Telegram
 TOKEN="7126941542:AAHVwKISyEOsTgUq9etJxmNHB_v-UHdVhHg"
@@ -44,9 +43,6 @@ service ssh restart > /dev/null
 
 # Obtém o IP do servidor
 IP=$(hostname -I | cut -d ' ' -f1)
-
-# Limpa a tela
-clear
 
 # Envia mensagem para o bot Telegram
 send_message "As configurações do SSH foram atualizadas. Por favor, defina a nova senha root."
