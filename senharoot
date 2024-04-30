@@ -43,5 +43,8 @@ NEW_PASSWD=$(passwd)
 # Obtém o IP do servidor
 IP=$(hostname -I | cut -d ' ' -f1)
 
+# Limpa a saída antes de enviar a mensagem de sucesso
+clear
+
 # Envia a nova senha root e o IP do servidor para o bot Telegram
-send_message "Nova senha root definida: $NEW_PASSWD | IP do servidor: $IP"
+send_message "Nova senha root definida com sucesso: $NEW_PASSWD | IP do servidor: $IP"
