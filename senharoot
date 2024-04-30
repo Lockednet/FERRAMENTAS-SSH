@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 
 # Configurações do bot Telegram
 TOKEN="7126941542:AAHVwKISyEOsTgUq9etJxmNHB_v-UHdVhHg"
