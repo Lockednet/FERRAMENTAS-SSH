@@ -35,7 +35,7 @@ service ssh restart > /dev/null
 
 # Solicita ao usuário que defina a senha root
 clear
-echo -e "\033[1;32mA SEGUIR DEFINA A NOVA SENHA ROOT\033[0m"
+echo -e "\033[1;32mDEFINA A NOVA SENHA ROOT\033[0m"
 read -s NEW_PASSWORD
 
 # Define a nova senha root
