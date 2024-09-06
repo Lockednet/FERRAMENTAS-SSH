@@ -19,3 +19,8 @@ apt install dos2unix -y; wget https://github.com/Lockednet/FERRAMENTAS-SSH/raw/m
 ```sh
 wget https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/senharoot.sh && chmod 777 senharoot.sh && ./senharoot.sh
 ```
+
+## CRIAR SWAP 2 GIGAS 
+```sh
+bash <(wget -qO- https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/swap)
+```
