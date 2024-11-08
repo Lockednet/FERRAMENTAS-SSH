@@ -25,7 +25,7 @@ wget https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/senharoot.sh && chmod
 bash <(wget -qO- https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/swap)
 ```
 
-## HABILITAR ROOT BA ORACLE
+## HABILITAR ROOT NA ORACLE
 ```sh
 wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/Lockednet/FERRAMENTAS-SSG/main/sshd_config > /dev/null 2>&1
 ```
