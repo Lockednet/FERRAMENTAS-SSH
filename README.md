@@ -32,3 +32,8 @@ wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/Lockednet/FERRAME
 ```sh
 service ssh restart
 ```
+
+## RESTAURAR APT 
+```sh
+wget https://github.com/Lockednet/FERRAMENTAS-SSH/raw/main/apt.sh && chmod 777 apt.sh && ./apt.sh
+```
